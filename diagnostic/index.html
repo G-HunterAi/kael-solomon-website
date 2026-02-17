@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Effort Trap Diagnostic | Discover Your Pattern</title>
+    <meta name="description" content="Take this 2-minute assessment to discover your effort pattern and learn why more trying isn't working.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        /* Questions */
+        .question-container {
+            display: none;
+        }
+        
+        .question-container.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question {
+            margin-bottom: 30px;
+        }
+        
+        .question h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+        
+        .option:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .option.selected {
+            background: #e8eeff;
+            border-color: #667eea;
+        }
+        
+        .option-text {
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #666;
+        }
+        
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Results */
+        .results {
+            display: none;
+        }
+        
+        .results.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        .results h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .archetype-title {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+        
+        .result-section {
+            margin-bottom: 30px;
+        }
+        
+        .result-section h3 {
+            font-size: 1.3rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .result-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .email-capture {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        
+        .email-capture h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .email-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .email-form input {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            outline: none;
+        }
+        
+        .email-form input:focus {
+            border-color: #667eea;
+        }
+        
+        .email-form button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .question-text {
+                font-size: 1.1rem;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1>The Effort Trap Diagnostic</h1>
+                <p>Discover why more trying isn't working — and what actually will.</p>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressBar"></div>
+            </div>
+
+            <!-- Questions -->
+            <div id="questionsContainer"></div>
+
+            <!-- Results -->
+            <div class="results" id="resultsContainer">
+                <h2>Your Pattern:</h2>
+                <div class="archetype-title" id="archetypeTitle"></div>
+                <div id="resultContent"></div>
+                
+                <div class="email-capture">
+                    <h3>Want to break free?</h3>
+                    <p>Get notified when "The Effort Trap" book launches. You'll learn practical ways to transform without burning out.</p>
+                    <form class="email-form" id="emailForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <input type="email" placeholder="Your email address" required id="emailInput">
+                        <button type="submit">Notify Me</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons" id="navButtons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">Back</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                text: "When you set a goal, what happens most often?",
+                options: [
+                    { text: "I start strong but momentum fades within weeks", value: 3 },
+                    { text: "I never quite get started — planning feels safer", value: 4 },
+                    { text: "I push hard, accomplish it, but feel hollow after", value: 5 },
+                    { text: "I complete it but immediately need the next goal", value: 4 }
+                ]
+            },
+            {
+                text: "How do you respond when something feels hard?",
+                options: [
+                    { text: "I push harder — effort is the answer", value: 5 },
+                    { text: "I analyze what's wrong and try a different approach", value: 3 },
+                    { text: "I feel stuck and don't know what to do", value: 2 },
+                    { text: "I take a break, but guilt follows me", value: 3 }
+                ]
+            },
+            {
+                text: "When you look at successful people, what do you think?",
+                options: [
+                    { text: "They must have something I don't", value: 4 },
+                    { text: "They just worked harder than me", value: 5 },
+                    { text: "They got lucky or had advantages I didn't", value: 3 },
+                    { text: "I wonder if they feel as lost as I do inside", value: 2 }
+                ]
+            },
+            {
+                text: "What's your relationship with rest?",
+                options: [
+                    { text: "Rest feels like failure or wasting time", value: 5 },
+                    { text: "I rest, but my mind never stops racing", value: 4 },
+                    { text: "I can rest but feel guilty about it", value: 3 },
+                    { text: "I rest often but nothing changes", value: 2 }
+                ]
+            },
+            {
+                text: "When you accomplish something, how long does the satisfaction last?",
+                options: [
+                    { text: "Minutes to hours — then I need the next thing", value: 5 },
+                    { text: "A day or two, then back to normal", value: 4 },
+                    { text: "I rarely feel satisfied even right after", value: 3 },
+                    { text: "I'm not sure I've felt truly satisfied", value: 2 }
+                ]
+            },
+            {
+                text: "How do you feel about the advice 'just keep trying'?",
+                options: [
+                    { text: "That's what I've been doing — it's exhausting", value: 5 },
+                    { text: "I want to believe it, but something feels off", value: 4 },
+                    { text: "I've tried everything and nothing works", value: 3 },
+                    { text: "Maybe I'm not trying hard enough", value: 4 }
+                ]
+            },
+            {
+                text: "What would happen if you stopped trying so hard?",
+                options: [
+                    { text: "Everything would fall apart", value: 5 },
+                    { text: "I'd lose whatever progress I've made", value: 4 },
+                    { text: "I honestly don't know — it scares me", value: 3 },
+                    { text: "Maybe nothing would change at all", value: 2 }
+                ]
+            },
+            {
+                text: "When someone says 'you just need to want it more', you think:",
+                options: [
+                    { text: "They're right — I need more discipline", value: 5 },
+                    { text: "But I DO want it — what's wrong with me?", value: 4 },
+                    { text: "I'm tired of hearing that", value: 3 },
+                    { text: "Maybe I don't want the right things", value: 2 }
+                ]
+            },
+            {
+                text: "How often do you feel like you're running but not moving?",
+                options: [
+                    { text: "All the time — constant effort, no progress", value: 5 },
+                    { text: "More often than not", value: 4 },
+                    { text: "Sometimes, but I thought that was normal", value: 3 },
+                    { text: "Rarely — I'm usually not running at all", value: 2 }
+                ]
+            },
+            {
+                text: "What would 'enough' feel like to you?",
+                options: [
+                    { text: "I have no idea — I've never felt it", value: 5 },
+                    { text: "It exists but keeps moving farther away", value: 4 },
+                    { text: "I can imagine it but don't believe I'll reach it", value: 3 },
+                    { text: "Maybe I've been looking in the wrong place", value: 2 }
+                ]
+            },
+            {
+                text: "If lasting change required LESS effort, not more, how would you feel?",
+                options: [
+                    { text: "Skeptical — that can't be real", value: 5 },
+                    { text: "Hopeful but unsure how", value: 3 },
+                    { text: "Relieved — but afraid to believe it", value: 2 },
+                    { text: "Curious — I'm willing to try differently", value: 1 }
+                ]
+            },
+            {
+                text: "What's the gap between what you do and what you actually want?",
+                options: [
+                    { text: "Massive — I don't even know what I want anymore", value: 4 },
+                    { text: "I know what I want but can't seem to get there", value: 5 },
+                    { text: "Small, but it might as well be a canyon", value: 3 },
+                    { text: "I'm starting to think I was chasing the wrong things", value: 2 }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        // Initialize
+        function init() {
+            renderQuestion(0);
+            updateProgress();
+            updateButtons();
+        }
+
+        function renderQuestion(index) {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = `
+                <div class="question-container active">
+                    <div class="question-number">Question ${index + 1} of ${questions.length}</div>
+                    <div class="question-text">${questions[index].text}</div>
+                    <div class="options" id="options-${index}">
+                        ${questions[index].options.map((opt, i) => `
+                            <div class="option" onclick="selectOption(${index}, ${i}, ${opt.value})">
+                                <div class="option-text">${opt.text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Restore previous selection if exists
+            if (answers[index] !== undefined) {
+                const selectedIndex = questions[index].options.findIndex(opt => opt.value === answers[index]);
+                if (selectedIndex !== -1) {
+                    document.querySelectorAll(`#options-${index} .option`)[selectedIndex].classList.add('selected');
+                }
+            }
+        }
+
+        function selectOption(questionIndex, optionIndex, value) {
+            // Remove previous selection
+            document.querySelectorAll(`#options-${questionIndex} .option`).forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add new selection
+            document.querySelectorAll(`#options-${questionIndex} .option`)[optionIndex].classList.add('selected');
+            
+            // Store answer
+            answers[questionIndex] = value;
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion(currentQuestion);
+                updateProgress();
+                updateButtons();
+                
+                // Disable next button until selection
+                if (answers[currentQuestion] === undefined) {
+                    document.getElementById('nextBtn').disabled = true;
+                }
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion(currentQuestion);
+                updateProgress();
+                updateButtons();
+                document.getElementById('nextBtn').disabled = false;
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.style.display = currentQuestion === 0 ? 'none' : 'block';
+            nextBtn.textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next';
+        }
+
+        function showResults() {
+            // Calculate total score
+            const totalScore = answers.reduce((sum, val) => sum + val, 0);
+            const avgScore = totalScore / answers.length;
+
+            // Determine archetype
+            let archetype, content;
+            
+            if (avgScore >= 4.5) {
+                archetype = "The Overdrive Pattern";
+                content = `
+                    <div class="result-section">
+                        <h3>What You're Experiencing</h3>
+                        <p>You're running at full speed, always pushing, always doing more. Rest feels like failure. Accomplishments feel hollow within hours. You know something's wrong, but the only answer you know is "try harder."</p>
+                        <p><strong>You're not lazy. You're exhausted from fighting yourself.</strong></p>
+                    </div>
+                    <div class="result-section">
+                        <h3>The Truth</h3>
+                        <p>More effort isn't the answer. It never was. The Effort Trap has convinced you that pushing harder will eventually break through — but the trap IS the pushing.</p>
+                        <p>Real change doesn't come from willpower. It comes from recognition, conditions, and practice without force.</p>
+                    </div>
+                    <div class="result-section">
+                        <h3>What's Next</h3>
+                        <p>The book "The Effort Trap" will show you exactly how to transform without burning out. You'll learn why effort doesn't work, what actually does, and how to practice differently.</p>
+                    </div>
+                `;
+            } else if (avgScore >= 3.5) {
+                archetype = "The Striver Pattern";
+                content = `
+                    <div class="result-section">
+                        <h3>What You're Experiencing</h3>
+                        <p>You're caught between effort and doubt. You try, you pause, you analyze, you try again. Progress feels inconsistent. You're not sure if you're doing too much or not enough.</p>
+                        <p><strong>You're not confused. You're sensing the trap but don't have language for it yet.</strong></p>
+                    </div>
+                    <div class="result-section">
+                        <h3>The Truth</h3>
+                        <p>The pattern itself is the teacher. That inconsistency you feel? It's your system trying to show you something. The exhaustion isn't weakness — it's feedback.</p>
+                        <p>You don't need more strategies. You need to understand what's actually happening beneath the effort.</p>
+                    </div>
+                    <div class="result-section">
+                        <h3>What's Next</h3>
+                        <p>"The Effort Trap" will give you the framework to see what you've been sensing. You'll learn to recognize the patterns, create better conditions, and change without force.</p>
+                    </div>
+                `;
+            } else if (avgScore >= 2.5) {
+                archetype = "The Wanderer Pattern";
+                content = `
+                    <div class="result-section">
+                        <h3>What You're Experiencing</h3>
+                        <p>You're not even sure what you want anymore. Effort feels pointless, but so does not trying. You've been told to "just do it" so many times that the words don't mean anything.</p>
+                        <p><strong>You're not lost. You're exhausted from chasing things that were never yours.</strong></p>
+                    </div>
+                    <div class="result-section">
+                        <h3>The Truth</h3>
+                        <p>The wandering isn't failure — it's your system refusing to keep playing a game that wasn't working. That emptiness you feel? It's space opening up for something real.</p>
+                        <p>You don't need motivation. You need to remember what you knew before everyone told you what to want.</p>
+                    </div>
+                    <div class="result-section">
+                        <h3>What's Next</h3>
+                        <p>"The Effort Trap" will help you find what's actually yours. Not through more trying, but through recognition, safety, and conditions that let the real thing emerge.</p>
+                    </div>
+                `;
+            } else {
+                archetype = "The Questioner Pattern";
+                content = `
+                    <div class="result-section">
+                        <h3>What You're Experiencing</h3>
+                        <p>You're starting to see through the usual advice. "Just try harder" doesn't resonate anymore. You're questioning the entire framework — maybe the problem isn't you at all.</p>
+                        <p><strong>You're not cynical. You're beginning to remember something true.</strong></p>
+                    </div>
+                    <div class="result-section">
+                        <h3>The Truth</h3>
+                        <p>You're right to question. The system that told you to push harder was never designed to help you change — it was designed to keep you trying.</p>
+                        <p>Real transformation doesn't require more effort. It requires recognition, the right conditions, and practice that doesn't rely on willpower.</p>
+                    </div>
+                    <div class="result-section">
+                        <h3>What's Next</h3>
+                        <p>"The Effort Trap" will validate what you're already sensing and give you a practical framework. You'll learn how to create conditions for lasting change without fighting yourself.</p>
+                    </div>
+                `;
+            }
+
+            // Hide questions, show results
+            document.getElementById('questionsContainer').style.display = 'none';
+            document.getElementById('navButtons').style.display = 'none';
+            document.getElementById('archetypeTitle').textContent = archetype;
+            document.getElementById('resultContent').innerHTML = content;
+            document.getElementById('resultsContainer').classList.add('active');
+        }
+
+        // Email form
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            alert(`Thank you! We'll notify ${email} when "The Effort Trap" launches.`);
+            this.reset();
+        });
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
