@@ -1,441 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kael Solomon - Books on Change, Growth, and Wisdom</title>
-    <meta name="description" content="Author of The Effort Trap, REPROGRAM, and books exploring transformation, effort, and the architecture of change.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f8f9fa;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Navigation */
-        nav {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #667eea;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-            line-height: 1.8;
-        }
-        
-        .cta-primary {
-            display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .cta-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        }
-        
-        /* About Section */
-        .about {
-            padding: 80px 20px;
-            background: white;
-        }
-        
-        .about h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-        }
-        
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #4a5568;
-        }
-        
-        .about-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .about-content strong {
-            color: #2c3e50;
-        }
-        
-        /* Books Grid */
-        .books {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
-        
-        .books h2 {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #2c3e50;
-        }
-        
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .book-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        
-        .book-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-        }
-        
-        .book-card.flagship {
-            border: 3px solid #667eea;
-            position: relative;
-        }
-        
-        .book-card.flagship::before {
-            content: "FLAGSHIP";
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        
-        .book-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-        
-        .book-card .tagline {
-            font-size: 1.1rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        
-        .book-card p {
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .book-card .cta-secondary {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-        
-        .book-card .cta-secondary:hover {
-            opacity: 0.9;
-        }
-        
-        .book-card.coming-soon {
-            opacity: 0.7;
-        }
-        
-        .book-card.coming-soon h3::after {
-            content: " (Coming Soon)";
-            font-size: 0.9rem;
-            color: #999;
-        }
-        
-        /* Email Signup */
-        .email-signup {
-            padding: 80px 20px;
-            background: white;
-            text-align: center;
-        }
-        
-        .email-signup h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #2c3e50;
-        }
-        
-        .email-signup p {
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .email-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .email-form input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        .email-form button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-        
-        .email-form button:hover {
-            opacity: 0.9;
-        }
-        
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 3rem 20px 2rem;
-            text-align: center;
-        }
-        
-        footer p {
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-        
-        footer .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        footer .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-        
-        footer .footer-links a:hover {
-            opacity: 1;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .email-form {
-                flex-direction: column;
-            }
-            
-            .books-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kael Solomon — Author</title>
+  <meta name="description" content="Kael Solomon writes about transformation, effort, and what it means to remember what you already know. Books, fiction, and music for the quietly restless." />
+
+  <!-- OG -->
+  <meta property="og:title" content="Kael Solomon — Author" />
+  <meta property="og:description" content="Writes about the gap between effort and landing. The author of REPROGRAM, The Effort Trap, and LOGOS." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FEFCF5;
+      --cream-d:  #F5F0E8;
+      --ink:      #1C1C1E;
+      --ink-soft: #3C3C3E;
+      --muted:    #8A8680;
+      --gold:     #B8962A;
+      --gold-l:   #D4AF44;
+      --border:   #E8E2D6;
+      --accent:   #4A5E6A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ──────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(254,252,245,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-style: italic;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.83rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      background: var(--ink);
+      color: var(--cream) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.04em;
+    }
+    .nav-cta:hover { background: var(--ink-soft) !important; color: var(--cream) !important; }
+
+    /* ── Hero ──────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 40px 60px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .hero-inner { max-width: 680px; }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 28px;
+      color: var(--ink);
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-body {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      line-height: 1.8;
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+    .hero-tagline {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+      margin-bottom: 40px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      letter-spacing: 0.02em;
+    }
+    .btn-primary:hover { background: var(--ink-soft); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--ink); background: var(--cream-d); }
+
+    /* ── Section base ──────────────────────────────────────────────────── */
+    section { padding: 80px 40px; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      max-width: 540px;
+      line-height: 1.75;
+      margin-bottom: 48px;
+    }
+
+    /* ── Philosophy ──────────────────────────────────────────────────── */
+    .philosophy { background: var(--ink); }
+    .philosophy .section-label { color: var(--gold); }
+    .philosophy h2 { color: #FEFCF5; }
+    .philosophy .body-text {
+      color: rgba(254,252,245,0.7);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 640px;
+    }
+    .philosophy .pullquote {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      color: #FEFCF5;
+      line-height: 1.5;
+      max-width: 680px;
+      border-left: 3px solid var(--gold);
+      padding-left: 24px;
+      margin: 40px 0;
+    }
+    .philosophy .body-text + .body-text { margin-top: 16px; }
+
+    /* ── Books ──────────────────────────────────────────────────────── */
+    .books { background: var(--cream-d); }
+    .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; }
+    .book-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .book-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .book-spine {
+      height: 180px;
+      display: flex; align-items: flex-end; padding: 24px;
+      position: relative;
+    }
+    .book-card:nth-child(1) .book-spine { background: linear-gradient(135deg, #1C1C1E 0%, #2C3E50 100%); }
+    .book-card:nth-child(2) .book-spine { background: linear-gradient(135deg, #2C3E50 0%, #4A5E6A 100%); }
+    .book-card:nth-child(3) .book-spine { background: linear-gradient(135deg, #4A3728 0%, #6B4B38 100%); }
+    .book-card:nth-child(4) .book-spine { background: linear-gradient(135deg, #2D3A2E 0%, #4A6040 100%); }
+    .book-card:nth-child(5) .book-spine { background: linear-gradient(135deg, #3C2A4A 0%, #5A4070 100%); }
+    .book-title-overlay {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .book-badge {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 100px; background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+    }
+    .book-body { padding: 24px; }
+    .book-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .book-body p { color: var(--ink-soft); font-size: 0.85rem; line-height: 1.65; margin-bottom: 16px; }
+    .book-body .book-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--cream-d);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    /* ── About ──────────────────────────────────────────────────────── */
+    .about { background: var(--cream); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .about-text p { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.8; margin-bottom: 18px; }
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+    .about-facts { background: var(--cream-d); border-radius: 16px; padding: 28px; border: 1px solid var(--border); }
+    .about-facts h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+    .fact-item {
+      display: flex; gap: 12px; margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .fact-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .fact-text { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
+    .fact-text strong { color: var(--ink); font-weight: 500; }
+
+    /* ── Themes ──────────────────────────────────────────────────────── */
+    .themes { background: var(--cream-d); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .themes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; }
+    .theme-card { padding: 24px 0; }
+    .theme-icon { font-size: 1.5rem; margin-bottom: 12px; }
+    .theme-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .theme-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── Newsletter ──────────────────────────────────────────────────── */
+    .newsletter { background: var(--ink); text-align: center; }
+    .newsletter .section-label { color: var(--gold); }
+    .newsletter h2 { color: #FEFCF5; max-width: 560px; margin: 0 auto 16px; }
+    .newsletter p { color: rgba(254,252,245,0.65); max-width: 480px; margin: 0 auto 36px; }
+    .newsletter-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto 14px; }
+    .newsletter-form input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #FEFCF5;
+      padding: 13px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--gold); }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,0.35); }
+    .newsletter-form button {
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 13px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: var(--gold-l); }
+    .newsletter-note { color: rgba(254,252,245,0.3); font-size: 0.75rem; }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 32px 40px;
+      display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+    }
+    footer p { color: rgba(254,252,245,0.35); font-size: 0.78rem; }
+    footer a { color: rgba(254,252,245,0.45); font-size: 0.78rem; text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--gold); }
+    .footer-links { display: flex; gap: 20px; }
+
+    /* ── Toast ──────────────────────────────────────────────────────── */
+    #toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--ink); color: var(--cream);
+      font-size: 0.88rem; font-weight: 500;
+      padding: 12px 24px; border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease; z-index: 999;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 24px; }
+      .hero { padding: 90px 24px 50px; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-content">
-            <div class="logo">Kael Solomon</div>
-            <ul class="nav-links">
-                <li><a href="#books">Books</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Kael Solomon</h1>
-            <p class="subtitle">Books on Change, Growth, and Wisdom</p>
-            <p>Same water, different cups. Whether you need practical frameworks, literary fiction, or scholarly bridges—all paths lead to the same recognition. You were never broken. There was never anything to fix.</p>
-            <a href="./effort-trap/" class="cta-primary">Read The Effort Trap</a>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Kael Solomon</a>
+  <div class="nav-links">
+    <a href="#books">Books</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#about">About</a>
+    <a href="#newsletter" class="nav-cta">Stay in Touch</a>
+  </div>
+</nav>
 
-    <section class="about" id="about">
-        <div class="container">
-            <h2>About Kael Solomon</h2>
-            <div class="about-content">
-                <p><strong>Kael Solomon</strong> writes about transformation—not as theory, but as lived reality. The insights in these books weren't discovered in classrooms. They were found at the bottom of the hardest years, where hollowness met clarity.</p>
-                
-                <p>The work isn't therapy. It's not religion. It's not self-help in the traditional sense. It's a framework for people who are willing to go slowly, who suspect that effort isn't the answer, and who are tired of fixing what was never broken.</p>
-                
-                <p><strong>The Corridor</strong>: Different books for different readers. Some need analytical frameworks. Some need to feel it in fiction. Some need scholarly bridges to wisdom traditions. Same water, different cups. All entrances lead to the same space.</p>
-                
-                <p>Kael Solomon is the pen name of <strong>Gengus Sanborn</strong>—meaning <em>the life force of wisdom earned through transformation</em>. The name honors what the work emerged from: demolition, illness, and the slow rebuilding of something that hadn't existed before.</p>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Kael Solomon — Author</p>
+    <h1>Writing for the ones who work<br>too hard at the <em>wrong things.</em></h1>
+    <p class="hero-body">
+      There's a particular exhaustion that comes not from doing too little — but from doing
+      everything right and still feeling like something's missing. That's the territory this
+      work explores.
+    </p>
+    <p class="hero-tagline">
+      "There is nothing to fix. There never was."
+    </p>
+    <div class="hero-actions">
+      <a href="#books" class="btn-primary">Explore the Books</a>
+      <a href="#philosophy" class="btn-secondary">The Philosophy</a>
+    </div>
+  </div>
+</div>
 
-    <section class="books" id="books">
-        <div class="container">
-            <h2>Books</h2>
-            <div class="books-grid">
-                <a href="./effort-trap/" class="book-card flagship">
-                    <h3>The Effort Trap</h3>
-                    <p class="tagline">Why trying harder makes it worse</p>
-                    <p>For exhausted achievers who suspect that more effort isn't the answer. Discover why pushing harder doesn't work—and what actually does.</p>
-                    <span class="cta-secondary">Learn More →</span>
-                </a>
-                
-                <a href="./reprogram/" class="book-card">
-                    <h3>REPROGRAM</h3>
-                    <p class="tagline">The 8 elements of sustainable change</p>
-                    <p>A practical framework for analytical readers. No motivation. No willpower. Just the architecture of how change actually happens.</p>
-                    <span class="cta-secondary">Learn More →</span>
-                </a>
-                
-                <div class="book-card coming-soon">
-                    <h3>Anxiety</h3>
-                    <p class="tagline">Understanding the architecture of worry</p>
-                    <p>Coming soon. A compassionate look at anxiety—not as pathology, but as pattern. How it forms, why it persists, and what actually helps.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- THEMES -->
+<section class="themes">
+  <div class="container">
+    <div class="themes-grid">
+      <div class="theme-card">
+        <div class="theme-icon">⚡</div>
+        <h4>The Effort Trap</h4>
+        <p>Why working harder often makes it worse — and what the exhausted achiever actually needs.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">🧭</div>
+        <h4>Genuine Change</h4>
+        <p>The difference between changing your behavior and changing what you believe about yourself.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">🌊</div>
+        <h4>Remembering</h4>
+        <p>Most people don't need to be taught anything new. They need the conditions to recall what they already know.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">🏛️</div>
+        <h4>Wisdom Traditions</h4>
+        <p>What ancient philosophy, theology, and psychology have been saying about human nature all along.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section class="email-signup" id="contact">
-        <div class="container">
-            <h2>Stay Updated</h2>
-            <p>Be the first to know about new books, essays, and insights. No spam, just updates when something meaningful is ready.</p>
-            <form class="email-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <input type="email" name="email" placeholder="Your email address" required>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
-    </section>
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="container">
+    <p class="section-label">The Philosophy</p>
+    <h2 style="color:#FEFCF5;">Same water. Different cups.</h2>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Kael Solomon. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="./effort-trap/">The Effort Trap</a>
-                <a href="./reprogram/">REPROGRAM</a>
-                <a href="./anxiety/">Anxiety</a>
-                <a href="#about">About</a>
-            </div>
+    <p class="pullquote">
+      "The work isn't to add something. It's to stop covering something up."
+    </p>
+
+    <p class="body-text">
+      The corridor — not a platform, not a system, not a brand — just a passageway.
+      Some people enter through a practical framework because they need handles on something
+      they can feel but can't name. Others come through fiction because they need to feel it
+      first before they can think it. A few arrive through music because words aren't the
+      right container.
+    </p>
+    <p class="body-text" style="margin-top:16px;">
+      It doesn't matter which door. What matters is that the same recognition becomes possible
+      inside all of them: <em style="color:rgba(254,252,245,0.8);">the person I've been trying to become was never missing.</em>
+    </p>
+    <p class="body-text" style="margin-top:16px;">
+      This isn't self-help in the conventional sense. There's no broken reader here to fix.
+      No steps to complete before you qualify for something. No inner circle where the real
+      secrets live. Just different entrances to the same corridor — and the same question
+      waiting at the end of each one.
+    </p>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="books" id="books">
+  <div class="container">
+    <p class="section-label">The Work</p>
+    <h2>Five ways in.</h2>
+    <p class="section-sub">
+      Different forms for different readers. All exploring the same territory.
+    </p>
+
+    <div class="books-grid">
+
+      <div class="book-card">
+        <div class="book-spine">
+          <span class="book-badge">Coming Soon</span>
+          <div class="book-title-overlay">The Effort Trap</div>
         </div>
-    </footer>
+        <div class="book-body">
+          <h3>The Effort Trap</h3>
+          <p>For the exhausted achiever. A practical guide to why trying harder often makes it
+          worse — and what genuine change actually requires. Approachable, evidence-informed, and
+          deeply human.</p>
+          <span class="book-tag">Practical Non-Fiction</span>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine">
+          <span class="book-badge">Coming Soon</span>
+          <div class="book-title-overlay">REPROGRAM</div>
+        </div>
+        <div class="book-body">
+          <h3>REPROGRAM</h3>
+          <p>Eight elements of genuine change, mapped in systematic detail. For the analytical
+          reader who needs a framework — and a framework that doesn't insult their intelligence.</p>
+          <span class="book-tag">Framework</span>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine">
+          <span class="book-badge">Series</span>
+          <div class="book-title-overlay">LOGOS</div>
+        </div>
+        <div class="book-body">
+          <h3>LOGOS</h3>
+          <p>A four-book literary science fiction series exploring the oldest questions through
+          a far-future civilization defined not by what it knows — but by what it fears. For
+          readers who need to feel something first.</p>
+          <span class="book-tag">Literary Sci-Fi · 4 Books</span>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine">
+          <span class="book-badge">Scholarly</span>
+          <div class="book-title-overlay">Architecture of Reality</div>
+        </div>
+        <div class="book-body">
+          <h3>Architecture of Reality</h3>
+          <p>A three-volume scholarly bridge examining how wisdom traditions — across philosophy,
+          theology, and psychology — have converged on the same description of human nature for
+          thousands of years.</p>
+          <span class="book-tag">Scholarly Bridge · 3 Volumes</span>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-spine">
+          <span class="book-badge">Ongoing</span>
+          <div class="book-title-overlay">Music</div>
+        </div>
+        <div class="book-body">
+          <h3>Music</h3>
+          <p>AI-collaborative compositions expressing the same themes through sound. Downtempo
+          house, tropical house, cinematic ambient. The corridor without language — for when
+          words aren't the right container.</p>
+          <span class="book-tag">AI-Collaborative Music</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <h2>On writing — and why now.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Kael Solomon didn't arrive at this work through academia or training. He arrived through
+          living it — a long arc from hollow achievement in his teens to financial collapse and
+          serious illness in his thirties to a slow, unglamorous rebuilding that somehow produced
+          more clarity than the years of accomplishment ever had.
+        </p>
+        <p>
+          The writing began recently, made possible by AI collaboration that allowed decades of
+          accumulated insight to finally become externalized — to leave the internal landscape
+          and take shape in language. The ideas didn't change. Only the vessel.
+        </p>
+        <p>
+          <strong>Before writing:</strong> careers in residential and commercial design, financial
+          systems, and entertainment — each involving, in some form, the design of experiences
+          for people. The throughline was always there.
+        </p>
+        <p>
+          The work isn't about G's story, though. It never was. It's about a recognition that
+          becomes possible when the conditions are right — and the books, music, and fiction are
+          just different ways of creating those conditions.
+        </p>
+        <p>
+          <em style="color:var(--muted);">
+            Kael Solomon is a pen name.
+          </em>
+        </p>
+      </div>
+      <div>
+        <div class="about-facts">
+          <h3>The Corridor</h3>
+          <div class="fact-item">
+            <span class="fact-icon">📖</span>
+            <span class="fact-text"><strong>The Effort Trap</strong> — Approachable entry. For the reader who is exhausted, not broken.</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-icon">🗺️</span>
+            <span class="fact-text"><strong>REPROGRAM</strong> — Systematic framework. For the analytical reader who needs handles.</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-icon">🌌</span>
+            <span class="fact-text"><strong>LOGOS</strong> — Fiction. For those who need to feel it before they can think it.</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-icon">🎵</span>
+            <span class="fact-text"><strong>Music</strong> — For when words aren't the right container.</span>
+          </div>
+          <div class="fact-item">
+            <span class="fact-icon">🏛️</span>
+            <span class="fact-text"><strong>Architecture of Reality</strong> — For scholars examining what's been said across traditions.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="newsletter">
+  <div class="container">
+    <p class="section-label">Stay in Touch</p>
+    <h2>When something is ready,<br>you'll hear about it.</h2>
+    <p>
+      No schedule, no noise. Just an email when a book releases, music drops, or something worth saying emerges.
+    </p>
+    <div class="newsletter-form">
+      <input type="email" id="nl-email" placeholder="your@email.com" autocomplete="email" />
+      <button onclick="handleSignup()">Subscribe</button>
+    </div>
+    <p class="newsletter-note">No marketing. No selling. Just signal.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.95rem;color:rgba(254,252,245,0.5);">Kael Solomon</a>
+  <p>© 2026 Kael Solomon. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="mailto:hello@kaelsolomon.com">Contact</a>
+    <a href="https://g-hunterai.github.io/effort-trap-diagnostic/" target="_blank">Take the Assessment</a>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+  function handleSignup() {
+    const input = document.getElementById('nl-email');
+    const email = input.value.trim();
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    if (!re.test(email)) {
+      input.style.borderColor = '#c0392b';
+      setTimeout(() => input.style.borderColor = 'rgba(255,255,255,0.15)', 1200);
+      return;
+    }
+
+    // Submit to Formspree (replace with actual endpoint)
+    fetch('https://formspree.io/f/REPLACE_WITH_ENDPOINT', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ email, source: 'kael-solomon-website', ts: new Date().toISOString() })
+    }).catch(() => {});
+
+    input.value = '';
+    showToast('✓ You\'re on the list.');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  document.getElementById('nl-email').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleSignup();
+  });
+</script>
+
 </body>
 </html>
