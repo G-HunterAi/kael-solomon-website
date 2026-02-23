@@ -636,12 +636,13 @@
       return;
     }
 
-    // Submit to Formspree (replace with actual endpoint)
-    fetch('https://formspree.io/f/REPLACE_WITH_ENDPOINT', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ email, source: 'kael-solomon-website', ts: new Date().toISOString() })
-    }).catch(() => {});
+    const payload = JSON.stringify({ email, source: 'kael-solomon-website', ts: new Date().toISOString() });
+    const headers = { 'Content-Type': 'application/json', Accept: 'application/json' };
+    fetch('https://luxliferx.com/api/subscribe', { method: 'POST', headers, body: payload })
+      .then(r => { if (!r.ok) throw new Error(); })
+      .catch(() => {
+        fetch('https://formspree.io/f/REPLACE_WITH_ENDPOINT', { method: 'POST', headers, body: payload }).catch(() => {});
+      });
 
     input.value = '';
     showToast('✓ You\'re on the list.');
